@@ -4,11 +4,15 @@
   "description": "",
   "main": "playground.js",
   "scripts": {
+    "start":"node server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/IvayloAsenov/Online-Marketplace-Shopify.git"
+  },
+  "engines": {
+    "node": "8.11.2"
   },
   "author": "",
   "license": "ISC",
