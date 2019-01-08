@@ -11,7 +11,7 @@ app.use(bodyParser.json());
     Creates a new product and adds it to the database
     Takes a product object as argument
 */
-app.post('/products', (req, res) => {
+app.post('/product', (req, res) => {
     var product = new Product({
         title: req.body.title,
         price: req.body.price,
@@ -26,17 +26,41 @@ app.post('/products', (req, res) => {
 });
 
 /*
-    Returns all the products in the store
+    returns all the products in the store
     
-    @available_only: by default false
-    if available_only is set to true then it will return all products
+    @availableOnly: by default false
+    if availableOnly is set to true then it will return all products
     in store which have available inventory
 */
-app.get('/products', (req, res) => {
-    Product.find().then((products) => {
+app.post('/products', (req, res) => {
+    let available = -1;
+    
+    if (req.body.availableOnly)
+        available = 0;
+
+    Product.find({
+        inventory_count: {$gt: available}
+    }).then((products) => {
         res.send({products})
     }, (e) => {
         res.status(400).send(e);
+    });
+});
+
+/*
+    returns a single product in the store depending on the title of the product
+    need to pass title as an argument
+*/
+app.get('/products/:title', (req, res) => {
+    var title = req.params.title;
+
+    Product.findOne({title: title}).then((product) => {
+        if (!product)
+            return res.status(404).send();
+        
+            res.send({product});
+    }).catch((e) => {
+        res.status(400).send();
     });
 });
 

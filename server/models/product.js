@@ -10,10 +10,11 @@ var Product = mongoose.model('Product', {
     price: {
         type: Number,
         required: true,
+        min: 0
     },
     inventory_count: {
         type: Number,
-        required: true
+        required: true,
     }
 });
 
