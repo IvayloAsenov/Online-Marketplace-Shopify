@@ -1,5 +1,6 @@
-var express = require('express');
-var bodyParser = require('body-parser');
+const _  = require('lodash');
+const express = require('express');
+const bodyParser = require('body-parser');
 
 var {mongoose} = require('./db/mongoose');
 var {Product}  = require('./models/product');
@@ -63,6 +64,37 @@ app.get('/products/:title', (req, res) => {
         res.status(400).send();
     });
 });
+
+/*
+    purchases the selected item (by title) if available inventory and if 
+    enough money
+    
+    requires
+    @title: string
+    @money: int
+*/
+app.patch('/products', (req, res) => {
+    var title = req.body.title;
+    var money = req.body.money;
+
+    if (!title || !money) res.status(400).send();
+
+    Product.findOneAndUpdate({
+        title: title,
+        inventory_count: {$gt: 0},
+        price: {$lte: money}
+    }, {
+        $inc: {inventory_count: -1}
+    }).then((product) => {
+        if (!product)
+            return res.status(404).send();
+
+        res.send({product})
+    }).catch((e) => {
+        res.status(404).send();
+    });
+});
+
 
 app.listen(3000, () => {
     console.log('started on port 3000');

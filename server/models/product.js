@@ -15,6 +15,7 @@ var Product = mongoose.model('Product', {
     inventory_count: {
         type: Number,
         required: true,
+        min: 0
     }
 });
 
