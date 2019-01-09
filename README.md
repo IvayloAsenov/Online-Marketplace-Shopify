@@ -10,16 +10,6 @@ The API is currently live and be reached on:
   - Add a product to the online marketplace
   - Fetch all or a specific product
   - Purchase products
-  
-### Tech
-
-SOM uses a number of open source projects to work properly:
-
-* [node.js] - evented I/O for the backend
-* [Express] - fast node.js network app framework [@tjholowaychuk]
-* [Mongoose] - elegant mongodb object modeling for node.js
-
-Shopify Online Marketplace is also an open source with a [public repository][dill] on GitHub.
 
 ### End-points
 
@@ -75,7 +65,15 @@ None
 title=[String]
 money=[Number]
 
+### Tech
 
+SOM uses a number of open source projects to work properly:
+
+* [node.js] - evented I/O for the backend
+* [Express] - fast node.js network app framework
+* [Mongoose] - elegant mongodb object modeling for node.js
+
+Shopify Online Marketplace is also an open source with a public repository on GitHub.
 
 [//]: # 
    [node.js]: <http://nodejs.org>
