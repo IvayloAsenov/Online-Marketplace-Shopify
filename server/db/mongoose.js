@@ -1,3 +1,7 @@
+/*
+    Set up for the MongoDB database
+*/
+
 var mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;

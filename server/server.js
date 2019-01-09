@@ -12,7 +12,9 @@ app.use(bodyParser.json());
 
 /*
     Creates a new product and adds it to the database
-    Takes a product object as argument
+    
+    Required Data Params:
+    @product: Product
 */
 app.post('/product', (req, res) => {
     var product = new Product({
@@ -29,9 +31,11 @@ app.post('/product', (req, res) => {
 });
 
 /*
-    returns all the products in the store
+    Returns all the products in the store
     
-    @availableOnly: by default false
+    Optional Data Params: 
+    @availableOnly: boolean
+    
     if availableOnly is set to true then it will return all products
     in store which have available inventory
 */
@@ -51,8 +55,11 @@ app.post('/products', (req, res) => {
 });
 
 /*
-    returns a single product in the store depending on the title of the product
+    Returns a single product in the store depending on the title of the product
     need to pass title as an argument
+
+    Required URL Params:
+    @title: String
 */
 app.get('/products/:title', (req, res) => {
     var title = req.params.title;
@@ -68,12 +75,12 @@ app.get('/products/:title', (req, res) => {
 });
 
 /*
-    purchases the selected item (by title) if available inventory and if 
+    Purchases the selected item (by title) if available inventory and if 
     enough money
     
-    requires
-    @title: string
-    @money: int
+    Required Data Params:
+    @title: String
+    @money: Number
 */
 app.patch('/products', (req, res) => {
     var title = req.body.title;
