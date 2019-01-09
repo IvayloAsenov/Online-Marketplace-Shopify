@@ -2,7 +2,7 @@
 
 This API is built using Node.js and uses MongoDB as a database to store the products on the marketplace. 
 
-The API is currently live and be reached on:
+The API is currently live and can be reached with Postman on:
 **https://evening-atoll-83369.herokuapp.com/**
 
 ### Features
